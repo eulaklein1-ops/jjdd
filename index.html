@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#071910">
+  <meta name="robots" content="index,follow">
+  <title>Удалённое сотрудничество в Узбекистане</title>
+  <meta name="description" content="Удалённое сотрудничество в Узбекистане. Гибкий график, обучение с нуля и поддержка команды. Подробности в Telegram.">
+
+  <style>
+    :root{
+      --bg:#06150e;
+      --bg2:#0b2418;
+      --card:#10261a;
+      --card2:#0b1d14;
+      --text:#fffdf6;
+      --muted:#bcc9c0;
+      --gold:#f2c45c;
+      --gold2:#dba53b;
+      --green:#19b76a;
+      --line:rgba(255,255,255,.09);
+      --tg:#229ED9;
+      --tg2:#168bc5;
+      --shadow:0 24px 70px rgba(0,0,0,.42);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 50% 0%,rgba(242,196,92,.12),transparent 28%),
+        radial-gradient(circle at 0% 45%,rgba(25,183,106,.11),transparent 27%),
+        linear-gradient(180deg,#0a2117 0%,#05110b 100%);
+      -webkit-font-smoothing:antialiased;
+    }
+
+    body:before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.18;
+      background-image:
+        linear-gradient(45deg, transparent 48%, rgba(255,255,255,.018) 49%, rgba(255,255,255,.018) 51%, transparent 52%);
+      background-size:24px 24px;
+    }
+
+    .page{
+      width:min(100%,520px);
+      min-height:100vh;
+      margin:auto;
+      padding:18px 15px calc(26px + env(safe-area-inset-bottom));
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+
+    .topline{
+      display:flex;
+      justify-content:center;
+      margin-bottom:12px;
+    }
+
+    .country{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      font-size:13px;
+      font-weight:650;
+      color:#e9f4ed;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.045);
+      border-radius:999px;
+      backdrop-filter:blur(8px);
+    }
+
+    .flag{
+      width:24px;
+      height:16px;
+      border-radius:3px;
+      overflow:hidden;
+      box-shadow:0 0 0 1px rgba(255,255,255,.18);
+      display:grid;
+      grid-template-rows:1fr 2px 1fr 2px 1fr;
+    }
+    .flag i:nth-child(1){background:#1eb4e9}
+    .flag i:nth-child(2),.flag i:nth-child(4){background:#e84d55}
+    .flag i:nth-child(3){background:white}
+    .flag i:nth-child(5){background:#25a34c}
+
+    .card{
+      position:relative;
+      overflow:hidden;
+      border:1px solid var(--line);
+      border-radius:27px;
+      padding:27px 19px 20px;
+      background:linear-gradient(180deg,rgba(17,45,30,.98),rgba(8,25,17,.99));
+      box-shadow:var(--shadow);
+    }
+
+    .shine{
+      position:absolute;
+      width:260px;
+      height:260px;
+      left:50%;
+      top:-190px;
+      transform:translateX(-50%);
+      border-radius:50%;
+      background:rgba(242,196,92,.15);
+      filter:blur(45px);
+    }
+
+    .eyebrow{
+      position:relative;
+      z-index:1;
+      width:max-content;
+      max-width:100%;
+      margin:0 auto 13px;
+      padding:7px 12px;
+      border-radius:9px;
+      color:#302000;
+      font-size:13px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.2px;
+      background:linear-gradient(180deg,#f7d879,#e4b449);
+      box-shadow:0 8px 25px rgba(242,196,92,.12);
+    }
+
+    h1{
+      position:relative;
+      z-index:1;
+      margin:0;
+      text-align:center;
+      font-size:30px;
+      line-height:1.08;
+      letter-spacing:-.7px;
+    }
+
+    h1 span{color:#f5cf72}
+
+    .lead{
+      margin:13px auto 0;
+      max-width:420px;
+      text-align:center;
+      font-size:16px;
+      line-height:1.5;
+      color:var(--muted);
+    }
+
+    .items{
+      display:grid;
+      gap:10px;
+      margin:23px 0 18px;
+    }
+
+    .item{
+      display:flex;
+      align-items:center;
+      gap:11px;
+      min-height:51px;
+      padding:11px 12px;
+      border:1px solid rgba(255,255,255,.065);
+      border-radius:15px;
+      background:rgba(255,255,255,.04);
+      font-size:15px;
+      line-height:1.3;
+    }
+
+    .tick{
+      width:27px;
+      height:27px;
+      flex:0 0 27px;
+      display:grid;
+      place-items:center;
+      border-radius:9px;
+      font-weight:900;
+      color:#092111;
+      background:linear-gradient(180deg,#55e996,#23bd6c);
+    }
+
+    .pay{
+      padding:12px 13px;
+      margin-bottom:17px;
+      border-radius:14px;
+      text-align:center;
+      background:rgba(242,196,92,.075);
+      border:1px solid rgba(242,196,92,.18);
+      color:#f3dfaa;
+      font-size:13px;
+      line-height:1.45;
+    }
+
+    .cta{
+      width:100%;
+      min-height:61px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      border-radius:17px;
+      text-decoration:none;
+      color:#fff;
+      font-size:17px;
+      font-weight:800;
+      background:linear-gradient(180deg,var(--tg),var(--tg2));
+      box-shadow:0 13px 30px rgba(34,158,217,.27);
+      transition:.15s ease;
+      -webkit-tap-highlight-color:transparent;
+    }
+
+    .cta:hover{filter:brightness(1.05)}
+    .cta:active{transform:scale(.985)}
+    .cta svg{width:24px;height:24px}
+
+    .hint{
+      margin:11px 4px 0;
+      text-align:center;
+      color:#87998d;
+      font-size:12px;
+      line-height:1.42;
+    }
+
+    .online{
+      margin-top:16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      color:#c5d2c9;
+      font-size:13px;
+    }
+
+    .dot{
+      width:8px;height:8px;border-radius:50%;
+      background:#43df8a;
+      box-shadow:0 0 0 4px rgba(67,223,138,.12);
+    }
+
+    .footer{
+      padding-top:14px;
+      text-align:center;
+      color:#607267;
+      font-size:11px;
+    }
+
+    @media(max-width:380px){
+      .card{padding-left:15px;padding-right:15px}
+      h1{font-size:27px}
+      .lead{font-size:15px}
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <div class="topline">
+      <div class="country">
+        <span class="flag" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+        Сотрудничество по Узбекистану
+      </div>
+    </div>
+
+    <section class="card">
+      <div class="shine"></div>
+
+      <div class="eyebrow">Набор сотрудников</div>
+
+      <h1>Удалённое сотрудничество <span>из дома</span></h1>
+
+      <p class="lead">
+        Рассматриваем кандидатов из Узбекистана. Можно начать без опыта — перед началом предусмотрено обучение и поддержка команды.
+      </p>
+
+      <div class="items">
+        <div class="item"><span class="tick">✓</span><span><b>Гибкий график</b> — удобно совмещать</span></div>
+        <div class="item"><span class="tick">✓</span><span><b>Без опыта</b> — обучение с нуля</span></div>
+        <div class="item"><span class="tick">✓</span><span><b>Удалённый формат</b> — работа через интернет</span></div>
+        <div class="item"><span class="tick">✓</span><span><b>Поддержка команды</b> на старте</span></div>
+      </div>
+
+      <div class="pay">
+        Условия и размер оплаты зависят от выбранного формата сотрудничества и выполненных задач. Подробности расскажет менеджер.
+      </div>
+
+      <a href="#" class="cta" id="telegramBtn" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path fill="currentColor" d="M21.8 3.4 18.7 20c-.2 1.2-.9 1.5-1.9.9l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8 8.8-7.9c.4-.3-.1-.5-.6-.2L6.4 14l-4.7-1.5c-1-.3-1-1 .2-1.5L20.2 4c.9-.3 1.8.2 1.6-.6Z"/>
+        </svg>
+        Узнать подробности в Telegram
+      </a>
+
+      <div class="online"><span class="dot"></span> Менеджер ответит в Telegram</div>
+
+      <div class="hint">
+        Нажимая кнопку, вы самостоятельно переходите в Telegram для получения информации об условиях сотрудничества.
+      </div>
+    </section>
+
+    <div class="footer">© <span id="year"></span> Информационная страница</div>
+  </main>
+
+  <script>
+    // ВСТАВЬТЕ СЮДА ССЫЛКУ НА TELEGRAM
+    const TELEGRAM_URL = "https://t.me/polyaris_service";
+
+    const button = document.getElementById("telegramBtn");
+    button.href = TELEGRAM_URL;
+
+    // Сохраняем рекламные параметры для аналитики
+    const qs = new URLSearchParams(location.search);
+    const traffic = {
+      utm_source: qs.get("utm_source") || "",
+      utm_medium: qs.get("utm_medium") || "",
+      utm_campaign: qs.get("utm_campaign") || "",
+      utm_content: qs.get("utm_content") || "",
+      utm_term: qs.get("utm_term") || "",
+      fbclid: qs.get("fbclid") || ""
+    };
+
+    try {
+      sessionStorage.setItem("traffic_data", JSON.stringify(traffic));
+    } catch(e) {}
+
+    button.addEventListener("click", () => {
+      // Работает после установки Meta Pixel
+      if (typeof fbq === "function") {
+        fbq("track", "Contact", {
+          destination: "telegram",
+          country: "uzbekistan"
+        });
+      }
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Вставьте стандартный Meta Pixel сюда, перед закрывающим тегом body -->
+</body>
+</html>
