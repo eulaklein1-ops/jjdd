@@ -255,6 +255,90 @@
       h1{font-size:27px}
       .lead{font-size:15px}
     }
+
+    .mobile-cta-bar{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      z-index:9999;
+      padding:
+        max(8px, env(safe-area-inset-top))
+        12px
+        9px;
+      background:rgba(5,17,11,.97);
+      border-bottom:1px solid rgba(255,255,255,.08);
+      box-shadow:0 8px 28px rgba(0,0,0,.32);
+      backdrop-filter:blur(12px);
+      -webkit-backdrop-filter:blur(12px);
+    }
+
+    .mobile-cta-top{
+      width:min(100%,520px);
+      min-height:58px;
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:14px 18px;
+      border-radius:16px;
+      text-decoration:none;
+      color:#fff;
+      font-size:16px;
+      font-weight:850;
+      background:linear-gradient(180deg,var(--tg),var(--tg2));
+      box-shadow:0 10px 28px rgba(34,158,217,.32);
+      -webkit-tap-highlight-color:transparent;
+    }
+
+    .mobile-cta-top:active{
+      transform:scale(.985)
+    }
+
+    .mobile-cta-top svg{
+      width:23px;
+      height:23px;
+      flex:0 0 23px;
+    }
+
+    /* reserve room for the fixed top CTA */
+    .page{
+      padding-top:calc(86px + env(safe-area-inset-top));
+    }
+
+    @media(max-width:600px){
+      .page{
+        justify-content:flex-start;
+        padding-top:calc(84px + env(safe-area-inset-top));
+      }
+
+      .topline{
+        margin-bottom:10px;
+      }
+
+      .card{
+        padding-top:22px;
+      }
+
+      .eyebrow{
+        margin-bottom:10px;
+      }
+
+      h1{
+        font-size:28px;
+      }
+
+      .lead{
+        font-size:15px;
+      }
+
+      .items{
+        margin-top:18px;
+      }
+    }
+
+
   </style>
 <!-- Meta Pixel Code -->
 <script>
@@ -277,6 +361,16 @@ fbq('track', 'PageView');
   src="https://www.facebook.com/tr?id=1723497089786879&ev=PageView&noscript=1"
   /></noscript>
   <main class="page">
+
+    <div class="mobile-cta-bar">
+      <a href="#" class="mobile-cta-top" id="telegramBtnTop" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path fill="currentColor" d="M21.8 3.4 18.7 20c-.2 1.2-.9 1.5-1.9.9l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8 8.8-7.9c.4-.3-.1-.5-.6-.2L6.4 14l-4.7-1.5c-1-.3-1-1 .2-1.5L20.2 4c.9-.3 1.8.2 1.6-.6Z"/>
+        </svg>
+        Перейти в Telegram
+      </a>
+    </div>
+
     <div class="topline">
       <div class="country">
         <span class="flag" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
@@ -327,8 +421,14 @@ fbq('track', 'PageView');
     // ВСТАВЬТЕ СЮДА ССЫЛКУ НА TELEGRAM
     const TELEGRAM_URL = "https://t.me/toostimul";
 
-    const button = document.getElementById("telegramBtn");
-    button.href = TELEGRAM_URL;
+    const buttons = [
+      document.getElementById("telegramBtnTop"),
+      document.getElementById("telegramBtn")
+    ].filter(Boolean);
+
+    buttons.forEach(button => {
+      button.href = TELEGRAM_URL;
+    });
 
     // Сохраняем рекламные параметры для аналитики
     const qs = new URLSearchParams(location.search);
@@ -345,18 +445,20 @@ fbq('track', 'PageView');
       sessionStorage.setItem("traffic_data", JSON.stringify(traffic));
     } catch(e) {}
 
-    button.addEventListener("click", () => {
-      // Работает после установки Meta Pixel
-      if (typeof fbq === "function") {
-        fbq("track", "Contact", {
-          destination: "telegram",
-          country: "uzbekistan"
-        });
-        fbq("track", "Lead", {
-          destination: "telegram",
-          country: "uzbekistan"
-        });
-      }
+    buttons.forEach(button => {
+      button.addEventListener("click", () => {
+        // Работает после установки Meta Pixel
+        if (typeof fbq === "function") {
+          fbq("track", "Contact", {
+            destination: "telegram",
+            country: "uzbekistan"
+          });
+          fbq("track", "Lead", {
+            destination: "telegram",
+            country: "uzbekistan"
+          });
+        }
+      });
     });
 
     document.getElementById("year").textContent = new Date().getFullYear();
