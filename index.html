@@ -446,8 +446,10 @@ fbq('track', 'PageView');
     } catch(e) {}
 
     buttons.forEach(button => {
-      button.addEventListener("click", () => {
-        // Работает после установки Meta Pixel
+      button.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        // Сначала отправляем конверсии в Meta Pixel.
         if (typeof fbq === "function") {
           fbq("track", "Contact", {
             destination: "telegram",
@@ -458,6 +460,12 @@ fbq('track', 'PageView');
             country: "uzbekistan"
           });
         }
+
+        // Небольшая задержка даёт браузеру время отправить событие,
+        // после чего пользователь переходит в Telegram.
+        setTimeout(() => {
+          window.location.href = TELEGRAM_URL;
+        }, 350);
       });
     });
 
